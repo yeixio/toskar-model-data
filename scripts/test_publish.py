@@ -49,6 +49,17 @@ class Publish(unittest.TestCase):
         s["models"][0]["cohorts"][0]["tier"] = "exact"
         self.assertNotEqual(self.run_publish(s).returncode, 0)
 
+    def test_languages(self):
+        s = snapshot()
+        s["models"][0]["languages"] = [{"language": "es", "ratings": 4, "average": 4.5, "weighted_score": 4.1, "confidence": "early"}]
+        self.assertEqual(self.run_publish(s).returncode, 0)
+        s["models"][0]["languages"][0]["ratings"] = 2
+        self.assertNotEqual(self.run_publish(s).returncode, 0)
+        s = snapshot()
+        # A language is never split by hardware.
+        s["models"][0]["languages"] = [{"language": "es", "cohort": "apple:m4-max", "ratings": 4, "average": 4.5, "weighted_score": 4.1, "confidence": "early"}]
+        self.assertNotEqual(self.run_publish(s).returncode, 0)
+
     def test_refuses_off_schema(self):
         s = snapshot()
         s["models"][0]["cohorts"][0]["client_id"] = "abc"
