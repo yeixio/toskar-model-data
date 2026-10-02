@@ -28,6 +28,9 @@ def main(path: str) -> int:
         for c in m["cohorts"]:
             if c["tier"] == "exact" or c["ratings"] < snap["min_ratings"]:
                 raise SystemExit(f"refusing to publish a small or exact cohort in {m['model']}")
+        for lang in m.get("languages", []):
+            if lang["ratings"] < snap["min_ratings"]:
+                raise SystemExit(f"refusing to publish a small language cohort in {m['model']}")
 
     def write(rel: str, data) -> None:
         p = ROOT / rel

@@ -26,6 +26,9 @@ This repository holds **aggregates only**: averages and counts per model configu
     {"tier": "family", "cohort": "apple:m4-max", "ratings": 18, "average": 4.67, "weighted_score": 4.51, "confidence": "community",
      "tags": {"fast": 12, "great_for_coding": 9}, "median_tokens_per_second": 18.2, "successful_start_rate": 0.96},
     {"tier": "global", "ratings": 126, "average": 4.4, "weighted_score": 4.38, "confidence": "community"}
+  ],
+  "languages": [
+    {"language": "es", "ratings": 14, "average": 3.9, "weighted_score": 3.86, "confidence": "community"}
   ]
 }
 ```
@@ -37,11 +40,12 @@ This repository holds **aggregates only**: averages and counts per model configu
 | `weighted_score` | `(weight × prior + sum of stars) / (weight + ratings)`, so few ratings lean toward the prior; rank by this |
 | `confidence` | `limited` (1–2 ratings), `early` (3–9), `community` (10+) |
 | `tags` | How many ratings gave each reason |
+| `languages` | Ratings by the language the model was used in, such as `es`, for the configuration as a whole, from people who chose to say |
 | `median_*`, `*_rate` | From ratings whose authors chose to share runtime observations (`observed` of them) |
 
 ## Privacy
 
-A cohort appears only with at least `min_ratings` (3) ratings, and exact-hardware cohorts, which are a machine's precise model and memory band, are never published. The publish script refuses a snapshot that breaks either rule, or that doesn't match the schema. Ratings carry no names, addresses, prompts, responses, or files. See the [service's privacy notes](https://github.com/yeixio/yggdrasil-ratings#privacy).
+A cohort appears only with at least `min_ratings` (3) ratings, and exact-hardware cohorts, which are a machine's precise model and memory band, are never published. A language appears with the same minimum and is never split by hardware. The publish script refuses a snapshot that breaks either rule, or that doesn't match the schema. Ratings carry no names, addresses, prompts, responses, or files. See the [service's privacy notes](https://github.com/yeixio/yggdrasil-ratings#privacy).
 
 ## Updating
 
