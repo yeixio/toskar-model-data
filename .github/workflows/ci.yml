@@ -1,0 +1,27 @@
+name: CI
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install jsonschema==4.23.0
+      - run: python3 -m unittest discover -s scripts -p 'test_*.py' -v
+      - name: Published files match the schema
+        run: |
+          python3 - <<'PY'
+          import json, pathlib, jsonschema
+          schema = json.loads(pathlib.Path("schema/ratings-v1.schema.json").read_text())
+          for p in [pathlib.Path("ratings/summary.json"), *pathlib.Path("snapshots").glob("*.json")]:
+              if p.exists():
+                  jsonschema.validate(json.loads(p.read_text()), schema)
+                  print("ok", p)
+          PY

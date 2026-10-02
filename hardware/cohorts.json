@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "tiers": [
+    {"tier": "exact", "key": "vendor:family:memory_type:memory_bucket_gb", "example": "apple:m4-max:unified:32-64", "published": false},
+    {"tier": "family", "key": "vendor:family", "example": "apple:m4-max", "published": true},
+    {"tier": "class", "key": "vendor:class:memory_bucket_gb", "example": "nvidia:rtx-40:16-32", "published": true},
+    {"tier": "backend", "key": "backend:memory_bucket_gb", "example": "metal:32-64", "published": true},
+    {"tier": "global", "key": "", "example": "", "published": true}
+  ],
+  "vendors": ["apple", "nvidia", "amd", "intel", "cpu"],
+  "memory_buckets_gb": ["0-8", "8-16", "16-32", "32-64", "64-128", "128+"],
+  "classes": {
+    "apple": "apple-silicon (M-series)",
+    "nvidia": "rtx-NN by series (rtx-40, rtx-30), gtx-NN, or nvidia-other",
+    "amd": "rx-N000 by series (rx-7000), or amd-other",
+    "intel": "arc-a, arc-b, or intel-other",
+    "cpu": "cpu"
+  }
+}
