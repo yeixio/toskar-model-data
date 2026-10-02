@@ -1,0 +1,33 @@
+name: Daily snapshot
+on:
+  schedule:
+    - cron: "17 4 * * *"
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: snapshot
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    # Does nothing until the service's address is set as a repository
+    # variable (Settings → Secrets and variables → Actions → Variables).
+    if: vars.RATINGS_URL != ''
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install jsonschema==4.23.0
+      - name: Fetch the public aggregates
+        run: curl -fsS --max-time 60 "${{ vars.RATINGS_URL }}/v1/aggregates" -o /tmp/snapshot.json
+      - name: Validate and lay out
+        run: python3 scripts/publish.py /tmp/snapshot.json
+      - name: Commit if anything changed
+        run: |
+          git config user.name "yggdrasil-model-data[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add ratings models snapshots
+          if git diff --cached --quiet; then echo "no change"; exit 0; fi
+          git commit -m "Snapshot $(date -u +%Y-%m-%d)"
+          git push
