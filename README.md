@@ -1,10 +1,10 @@
-# Yggdrasil model data
+# Toskar model data
 
-Public, versioned aggregate snapshots of [Yggdrasil](https://github.com/yeixio/yggdrasil-core)'s community model ratings. They answer:
+Public, versioned aggregate snapshots of [Toskar](https://github.com/yeixio/yggdrasil-core)'s community model ratings. They answer:
 
 > **How well does this model work for people with hardware like mine?**
 
-This repository holds **aggregates only**: averages and counts per model configuration and hardware cohort. It has no per-person records. Live ratings go to the ratings service ([yeixio/yggdrasil-ratings](https://github.com/yeixio/yggdrasil-ratings)), and a daily job publishes what it may share here. Yggdrasil uses these files as a cache when the service can't be reached, and anyone may use them: they are dedicated to the public domain ([CC0](LICENSE)).
+This repository holds **aggregates only**: averages and counts per model configuration and hardware cohort. It has no per-person records. Live ratings go to the ratings service ([yeixio/toskar-ratings](https://github.com/yeixio/toskar-ratings)), and a daily job publishes what it may share here. Toskar uses these files as a cache when the service can't be reached, and anyone may use them: they are dedicated to the public domain ([CC0](LICENSE)).
 
 ## Layout
 
@@ -45,7 +45,7 @@ This repository holds **aggregates only**: averages and counts per model configu
 
 ## Privacy
 
-A cohort appears only with at least `min_ratings` (3) ratings, and exact-hardware cohorts, which are a machine's precise model and memory band, are never published. A language appears with the same minimum and is never split by hardware. The publish script refuses a snapshot that breaks either rule, or that doesn't match the schema. Ratings carry no names, addresses, prompts, responses, or files. See the [service's privacy notes](https://github.com/yeixio/yggdrasil-ratings#privacy).
+A cohort appears only with at least `min_ratings` (3) ratings, and exact-hardware cohorts, which are a machine's precise model and memory band, are never published. A language appears with the same minimum and is never split by hardware. The publish script refuses a snapshot that breaks either rule, or that doesn't match the schema. Ratings carry no names, addresses, prompts, responses, or files. See the [service's privacy notes](https://github.com/yeixio/toskar-ratings#privacy).
 
 ## Updating
 
