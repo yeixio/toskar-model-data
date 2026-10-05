@@ -49,4 +49,4 @@ A cohort appears only with at least `min_ratings` (3) ratings, and exact-hardwar
 
 ## Updating
 
-`.github/workflows/snapshot.yml` runs daily. It fetches `<RATINGS_URL>/v1/aggregates`, validates and lays it out with `scripts/publish.py`, and commits any change with this repository's own token. Set the `RATINGS_URL` repository variable to turn it on; until then it does nothing.
+`.github/workflows/snapshot.yml` runs daily. It fetches `<RATINGS_URL>/v1/aggregates`, validates and lays it out with `scripts/publish.py`, and commits any change to `main`. The organization's ruleset requires a pull request for `main`, which deploy keys may bypass, so the push uses a deploy key with write access, stored as the secret `SNAPSHOT_DEPLOY_KEY`. The `RATINGS_URL` repository variable turns it on; until it is set the job does nothing.
