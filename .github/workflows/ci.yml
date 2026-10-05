@@ -6,14 +6,23 @@ on:
 permissions:
   contents: read
 jobs:
+  # CI_RUNS_ON (an org variable) moves this to self-hosted runners; unset,
+  # it stays on GitHub's.
   test:
-    runs-on: ubuntu-latest
+    runs-on: ${{ fromJSON(vars.CI_RUNS_ON || '"ubuntu-latest"') }}
     steps:
       - uses: actions/checkout@v4
+      # A self-hosted runner uses its own Python 3; setup-python has no
+      # builds for every Ubuntu.
       - uses: actions/setup-python@v5
+        if: runner.environment == 'github-hosted'
         with:
           python-version: "3.12"
-      - run: pip install jsonschema==4.23.0
+      - name: Install jsonschema
+        run: |
+          python3 -m venv "$RUNNER_TEMP/venv"
+          echo "$RUNNER_TEMP/venv/bin" >> "$GITHUB_PATH"
+          "$RUNNER_TEMP/venv/bin/pip" install jsonschema==4.23.0
       - run: python3 -m unittest discover -s scripts -p 'test_*.py' -v
       - name: Published files match the schema
         run: |
