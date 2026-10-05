@@ -3,8 +3,11 @@ on:
   schedule:
     - cron: "17 4 * * *"
   workflow_dispatch:
+# The commit is pushed with a deploy key (secret SNAPSHOT_DEPLOY_KEY):
+# the organization's ruleset requires a pull request for main and lets
+# deploy keys bypass it, while the workflow's own token can't.
 permissions:
-  contents: write
+  contents: read
 concurrency:
   group: snapshot
 jobs:
@@ -15,6 +18,8 @@ jobs:
     if: vars.RATINGS_URL != ''
     steps:
       - uses: actions/checkout@v4
+        with:
+          ssh-key: ${{ secrets.SNAPSHOT_DEPLOY_KEY }}
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
