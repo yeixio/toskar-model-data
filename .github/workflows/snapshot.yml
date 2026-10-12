@@ -12,7 +12,7 @@ concurrency:
   group: snapshot
 jobs:
   snapshot:
-    runs-on: ubuntu-latest
+    runs-on: ${{ fromJSON(vars.TRUSTED_RUNS_ON || '"ubuntu-latest"') }}
     # Does nothing until the service's address is set as a repository
     # variable (Settings → Secrets and variables → Actions → Variables).
     if: vars.RATINGS_URL != ''
