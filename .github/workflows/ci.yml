@@ -20,9 +20,12 @@ jobs:
           python-version: "3.12"
       - name: Install jsonschema
         run: |
-          python3 -m venv "$RUNNER_TEMP/venv"
+          # --clear and an explicit idna: on the home runners a stray idna
+          # without IDNAError broke jsonschema's import (#9).
+          python3 -m venv --clear "$RUNNER_TEMP/venv"
           echo "$RUNNER_TEMP/venv/bin" >> "$GITHUB_PATH"
-          "$RUNNER_TEMP/venv/bin/pip" install jsonschema==4.23.0
+          "$RUNNER_TEMP/venv/bin/pip" install jsonschema==4.23.0 idna==3.20
+          "$RUNNER_TEMP/venv/bin/python" -c "import idna, jsonschema; print('idna from', idna.__file__)"
       - run: python3 -m unittest discover -s scripts -p 'test_*.py' -v
       - name: Published files match the schema
         run: |
