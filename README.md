@@ -48,6 +48,8 @@ This repository holds **aggregates only**: averages and counts per model configu
 
 `quality/results.json` holds what Toskar's own test runs measured, per model, computer, and date: how many cases passed in each suite, and how long a question took. It's `schema/quality-v1.schema.json`. It makes no ranking and draws no conclusions. Each row says where its run can be read, and scores from different computers or dates aren't the same test. The weekly quality run adds to it, and later people's own runs will too.
 
+[How they're measured](https://github.com/yeixio/toskar-core/blob/main/docs/quality.md), with what we know is weak, and how to suggest changes.
+
 ## Privacy
 
 A cohort appears only with at least `min_ratings` (3) ratings, and exact-hardware cohorts, which are a machine's precise model and memory band, are never published. A language appears with the same minimum and is never split by hardware. The publish script refuses a snapshot that breaks either rule, or that doesn't match the schema. Ratings carry no names, addresses, prompts, responses, or files. See the [service's privacy notes](https://github.com/yeixio/toskar-ratings#privacy).

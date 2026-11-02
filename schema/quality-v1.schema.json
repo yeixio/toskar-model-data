@@ -6,6 +6,7 @@
   "properties": {
     "schema": {"const": 1},
     "note": {"type": "string"},
+    "method": {"type": "string", "description": "How the results are measured"},
     "suites": {"type": "object", "additionalProperties": {"type": "string"}},
     "results": {
       "type": "array",
