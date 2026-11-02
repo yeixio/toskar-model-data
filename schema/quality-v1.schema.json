@@ -12,12 +12,14 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["model", "name", "date", "hardware", "scores"],
+        "required": ["model", "name", "date", "hardware", "method_version", "scores"],
         "properties": {
           "model": {"type": "string", "description": "The model's catalog ID, or another name for one the catalog doesn't have"},
           "name": {"type": "string"},
           "date": {"type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$"},
           "hardware": {"type": "string"},
+          "method_version": {"type": "integer", "minimum": 0, "description": "The version of how it was measured; 0 is before versions existed"},
+          "submitted": {"type": "boolean", "description": "Sent by someone outside the project, and not run by us"},
           "source": {"type": "string", "description": "Where the run can be read"},
           "scores": {
             "type": "object",
