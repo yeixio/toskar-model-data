@@ -46,7 +46,9 @@ This repository holds **aggregates only**: averages and counts per model configu
 
 ## Quality results
 
-`quality/results.json` holds what Toskar's own test runs measured, per model, computer, and date: how many cases passed in each suite, and how long a question took. It's `schema/quality-v1.schema.json`. It makes no ranking and draws no conclusions. Each row says where its run can be read, and scores from different computers or dates aren't the same test. The weekly quality run adds to it, and later people's own runs will too.
+`quality/results.json` holds what Toskar's own test runs measured, per model, computer, and date: how many cases passed in each suite, and how long a question took. It's `schema/quality-v1.schema.json`. Each row says the version of the method that measured it (`method_version`), since scores are only comparable within one version, and `submitted` marks a run someone sent us. It makes no ranking and draws no conclusions. Each row says where its run can be read, and scores from different computers or dates aren't the same test. The weekly quality run adds to it, and later people's own runs will too.
+
+[How they're measured](https://github.com/yeixio/toskar-core/blob/main/docs/quality.md), with what we know is weak, and how to suggest changes.
 
 ## Privacy
 
