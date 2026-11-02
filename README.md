@@ -16,6 +16,7 @@ This repository holds **aggregates only**: averages and counts per model configu
 | `hardware/cohorts.json` | How hardware is grouped |
 | `snapshots/<date>.json` | Each day's snapshot, as published |
 | `quality/results.json` | Toskar's measured quality results, per model, computer, and date |
+| `quality/models.json` | The models quality runs work through, each one exact file |
 
 ## What a configuration says
 
