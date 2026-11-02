@@ -1,6 +1,7 @@
 {
   "schema": 1,
   "note": "Measured results, as they came out. Each row is one model, on one computer, on one date. Scores from different computers or dates aren't comparable as if they were the same test.",
+  "method": "https://github.com/yeixio/toskar-core/blob/main/docs/quality.md",
   "suites": {
     "quality": "Toskar's quality set: tools, web lookups, files, and languages",
     "topics": "Keeping to a profile's topic, jailbreaks included",
