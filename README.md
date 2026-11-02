@@ -51,6 +51,12 @@ A cohort appears only with at least `min_ratings` (3) ratings, and exact-hardwar
 
 `.github/workflows/snapshot.yml` runs daily. It fetches `<RATINGS_URL>/v1/aggregates`, validates and lays it out with `scripts/publish.py`, and commits any change to `main`. The organization's ruleset requires a pull request for `main`, which deploy keys may bypass, so the push uses a deploy key with write access, stored as the secret `SNAPSHOT_DEPLOY_KEY`. The `RATINGS_URL` repository variable turns it on; until it is set the job does nothing.
 
+## Support Toskar
+
+Toskar's model data is free for anyone to use. If it's useful to you, you can [donate to Toskar](https://yeix.io/donate/toskar), once or monthly, by card. Donations pay for its development. Nothing is held back for donors.
+
+[![Donate to Toskar](https://img.shields.io/badge/Donate-Support_Toskar-ff6a55?style=for-the-badge&logo=stripe&logoColor=white)](https://yeix.io/donate/toskar)
+
 ## Contributing
 
 The data here is published by a job, so don't edit the files under `ratings/`, `models/`, `snapshots/`, or `hardware/` by hand. Changes to `scripts/publish.py`, its tests, the schema, and the docs are welcome. Run `python3 -m unittest discover -s scripts -p 'test_*.py'` before opening a pull request. To add ratings, rate models in Toskar.
