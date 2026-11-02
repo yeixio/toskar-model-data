@@ -36,4 +36,11 @@ jobs:
               if p.exists():
                   jsonschema.validate(json.loads(p.read_text()), schema)
                   print("ok", p)
+          results = json.loads(pathlib.Path("quality/results.json").read_text())
+          jsonschema.validate(results, json.loads(pathlib.Path("schema/quality-v1.schema.json").read_text()))
+          for r in results["results"]:
+              for suite, score in r["scores"].items():
+                  assert suite in results["suites"], f"{r['name']}: no suite {suite}"
+                  assert score["passed"] <= score["of"], f"{r['name']} {suite}: {score}"
+          print("ok quality/results.json")
           PY

@@ -15,6 +15,7 @@ This repository holds **aggregates only**: averages and counts per model configu
 | `models/<model>/<quantization>-<runtime>-<backend>-<format>.json` | One configuration, such as `models/qwen2.5-coder-7b-instruct/q4_k_m-llamacpp-metal-gguf.json` |
 | `hardware/cohorts.json` | How hardware is grouped |
 | `snapshots/<date>.json` | Each day's snapshot, as published |
+| `quality/results.json` | Toskar's measured quality results, per model, computer, and date |
 
 ## What a configuration says
 
@@ -42,6 +43,10 @@ This repository holds **aggregates only**: averages and counts per model configu
 | `tags` | How many ratings gave each reason |
 | `languages` | Ratings by the language the model was used in, such as `es`, for the configuration as a whole, from people who chose to say |
 | `median_*`, `*_rate` | From ratings whose authors chose to share runtime observations (`observed` of them) |
+
+## Quality results
+
+`quality/results.json` holds what Toskar's own test runs measured, per model, computer, and date: how many cases passed in each suite, and how long a question took. It's `schema/quality-v1.schema.json`. It makes no ranking and draws no conclusions. Each row says where its run can be read, and scores from different computers or dates aren't the same test. The weekly quality run adds to it, and later people's own runs will too.
 
 ## Privacy
 
