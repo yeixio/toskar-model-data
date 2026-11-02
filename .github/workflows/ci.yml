@@ -39,6 +39,9 @@ jobs:
           results = json.loads(pathlib.Path("quality/results.json").read_text())
           jsonschema.validate(results, json.loads(pathlib.Path("schema/quality-v1.schema.json").read_text()))
           for r in results["results"]:
+              # Only complete rows are published, so every row can be compared.
+              missing = {"quality", "topics", "files", "reasoning"} - set(r["scores"])
+              assert not missing, f"{r['name']}: no {sorted(missing)}"
               for suite, score in r["scores"].items():
                   assert suite in results["suites"], f"{r['name']}: no suite {suite}"
                   assert score["passed"] <= score["of"], f"{r['name']} {suite}: {score}"
