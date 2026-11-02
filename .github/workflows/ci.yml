@@ -46,4 +46,9 @@ jobs:
                   assert suite in results["suites"], f"{r['name']}: no suite {suite}"
                   assert score["passed"] <= score["of"], f"{r['name']} {suite}: {score}"
           print("ok quality/results.json")
+          listed = json.loads(pathlib.Path("quality/models.json").read_text())
+          jsonschema.validate(listed, json.loads(pathlib.Path("schema/quality-models-v1.schema.json").read_text()))
+          ids = [m["id"] for m in listed["models"]]
+          assert len(ids) == len(set(ids)), "a model is listed twice"
+          print("ok quality/models.json")
           PY
