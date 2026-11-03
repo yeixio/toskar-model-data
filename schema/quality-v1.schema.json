@@ -166,6 +166,10 @@
           "why": {
             "type": "string",
             "description": "Why it's short of full, in the runtime's words"
+          },
+          "off_list": {
+            "type": "boolean",
+            "description": "A model someone chose by its link, and not one from quality/models.json"
           }
         },
         "additionalProperties": false
