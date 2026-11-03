@@ -166,6 +166,10 @@
           "why": {
             "type": "string",
             "description": "Why it's short of full, in the runtime's words"
+          },
+          "os": {
+            "type": "string",
+            "description": "The operating system it ran on, such as Linux, macOS, Windows, or iOS 26.1"
           }
         },
         "additionalProperties": false
