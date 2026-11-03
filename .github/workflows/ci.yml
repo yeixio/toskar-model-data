@@ -44,6 +44,9 @@ jobs:
               if r.get("runs") == "no":
                   assert not r["scores"] and r.get("why"), f"{r['name']}: doesn't run, so needs a why and no scores"
                   continue
+              # A speed test, as a phone runs today: how it ran and how fast, with no scores at all.
+              if not r["scores"] and r.get("runs") and r.get("performance"):
+                  continue
               missing = {"quality", "topics", "files", "reasoning"} - set(r["scores"])
               assert not missing, f"{r['name']}: no {sorted(missing)}"
               for suite, score in r["scores"].items():
