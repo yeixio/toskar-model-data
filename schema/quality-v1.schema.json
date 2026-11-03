@@ -144,10 +144,6 @@
                 "type": "integer",
                 "minimum": 0
               },
-              "memory_bytes": {
-                "type": "integer",
-                "minimum": 0
-              },
               "context_window": {
                 "type": "integer",
                 "minimum": 0
@@ -157,6 +153,19 @@
               }
             },
             "additionalProperties": false
+          },
+          "runs": {
+            "enum": [
+              "full",
+              "partial",
+              "cpu",
+              "no"
+            ],
+            "description": "How the model ran on this computer: all on its graphics card or chip; partly, with the rest in system memory; on the processor alone; or not at all, when the row has no scores"
+          },
+          "why": {
+            "type": "string",
+            "description": "Why it's short of full, in the runtime's words"
           }
         },
         "additionalProperties": false

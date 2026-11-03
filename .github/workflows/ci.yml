@@ -40,6 +40,10 @@ jobs:
           jsonschema.validate(results, json.loads(pathlib.Path("schema/quality-v1.schema.json").read_text()))
           for r in results["results"]:
               # Only complete rows are published, so every row can be compared.
+              # A model that doesn't run is a result too: no scores, and why.
+              if r.get("runs") == "no":
+                  assert not r["scores"] and r.get("why"), f"{r['name']}: doesn't run, so needs a why and no scores"
+                  continue
               missing = {"quality", "topics", "files", "reasoning"} - set(r["scores"])
               assert not missing, f"{r['name']}: no {sorted(missing)}"
               for suite, score in r["scores"].items():
