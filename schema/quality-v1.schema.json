@@ -167,6 +167,10 @@
             "type": "string",
             "description": "Why it's short of full, in the runtime's words"
           },
+          "off_list": {
+            "type": "boolean",
+            "description": "A model someone chose by its link, and not one from quality/models.json"
+          },
           "os": {
             "type": "string",
             "description": "The operating system it ran on, such as Linux, macOS, Windows, or iOS 26.1"
