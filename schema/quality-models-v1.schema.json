@@ -48,6 +48,11 @@
             "type": "string",
             "pattern": "^https://huggingface\\.co/",
             "description": "One exact file, for a model not in Toskar's catalog"
+          },
+          "downloads": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Its Hugging Face downloads when it was checked, to suggest what's popular"
           }
         },
         "additionalProperties": false
