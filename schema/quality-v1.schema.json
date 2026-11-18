@@ -150,6 +150,29 @@
               },
               "quantization": {
                 "type": "string"
+              },
+              "llama_cpp": {
+                "type": "string",
+                "description": "The llama.cpp build it ran on, such as b12441"
+              },
+              "speculation": {
+                "type": "string",
+                "description": "Whether speculative decoding was on"
+              },
+              "draft_accepted": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1,
+                "description": "The share of draft tokens that were accepted"
+              },
+              "devices": {
+                "type": "array",
+                "items": {"type": "string"},
+                "description": "The GPUs it ran on"
+              },
+              "system_memory_bytes": {
+                "type": "integer",
+                "minimum": 0
               }
             },
             "additionalProperties": false
