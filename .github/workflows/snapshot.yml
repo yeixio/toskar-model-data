@@ -17,10 +17,10 @@ jobs:
     # variable (Settings → Secrets and variables → Actions → Variables).
     if: vars.RATINGS_URL != ''
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
         with:
           ssh-key: ${{ secrets.SNAPSHOT_DEPLOY_KEY }}
-      - uses: actions/setup-python@v6
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
       - run: pip install jsonschema==4.23.0
